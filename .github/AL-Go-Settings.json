@@ -1,10 +1,11 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v8.2/.Modules/settings.schema.json",
+  "$schema": "https://raw.githubusercontent.com/aholstrup1/AL-Go/aholstrup/workspace_compilationm/Actions/.Modules/settings.schema.json",
   "type": "AppSource App",
   "templateUrl": "https://github.com/aholstrup1/al-go@aholstrup/workspace_compilationm",
   "artifact": "bcinsider/Sandbox/28.0.45995.0//latest",
   "useWorkspaceCompilation": true,
   "useCompilerFolder": true,
   "doNotPublishApps": true,
-  "doNotRunTests": true
+  "doNotRunTests": true,
+  "templateSha": "41a5e6d947636f11303f033b88ff04018abddec2"
 }

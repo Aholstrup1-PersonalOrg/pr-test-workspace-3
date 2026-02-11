@@ -42,7 +42,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: aholstrup1/al-go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -51,19 +51,19 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: aholstrup1/al-go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Read settings
         id: ReadSettings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: aholstrup1/al-go/Actions/DetermineDeploymentEnvironments@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineDeploymentEnvironments@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -82,7 +82,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         if: steps.DetermineDeploymentEnvironments.outputs.UnknownEnvironment == 1
         with:
           shell: powershell
@@ -114,7 +114,7 @@ jobs:
             Write-Host "No AuthContext provided for $envName, initiating Device Code flow"
             $ALGoHelperPath = "$([System.IO.Path]::GetTempFileName()).ps1"
             $webClient = New-Object System.Net.WebClient
-            $webClient.DownloadFile('https://raw.githubusercontent.com/aholstrup1/al-go/Actions/v8.2/AL-Go-Helper.ps1', $ALGoHelperPath)
+            $webClient.DownloadFile('https://raw.githubusercontent.com/aholstrup1/AL-Go/aholstrup/workspace_compilationm/Actions/AL-Go-Helper.ps1', $ALGoHelperPath)
             . $ALGoHelperPath
             DownloadAndImportBcContainerHelper
             $authContext = New-BcAuthContext -includeDeviceLogin -deviceLoginTimeout ([TimeSpan]::FromSeconds(0))
@@ -150,21 +150,21 @@ jobs:
           Add-Content -Encoding UTF8 -Path $env:GITHUB_OUTPUT -Value "envName=$envName"
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: ${{ matrix.shell }}
           get: type,powerPlatformSolutionFolder
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: ${{ matrix.shell }}
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: '${{ steps.envName.outputs.envName }}-AuthContext,${{ steps.envName.outputs.envName }}_AuthContext,AuthContext'
 
       - name: Get Artifacts for deployment
-        uses: aholstrup1/al-go/Actions/GetArtifactsForDeployment@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/GetArtifactsForDeployment@aholstrup/workspace_compilationm
         with:
           shell: ${{ matrix.shell }}
           artifactsVersion: ${{ github.event.inputs.appVersion }}
@@ -172,7 +172,7 @@ jobs:
 
       - name: Deploy to Business Central
         id: Deploy
-        uses: aholstrup1/al-go/Actions/Deploy@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/Deploy@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -185,7 +185,7 @@ jobs:
 
       - name: Deploy to Power Platform
         if: env.type == 'PTE' && env.powerPlatformSolutionFolder != ''
-        uses: aholstrup1/al-go/Actions/DeployPowerPlatform@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DeployPowerPlatform@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -204,7 +204,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: aholstrup1/al-go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

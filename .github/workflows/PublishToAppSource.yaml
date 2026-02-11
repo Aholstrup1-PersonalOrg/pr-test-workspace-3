@@ -38,7 +38,7 @@ jobs:
       telemetryScopeJson: ${{ steps.init.outputs.telemetryScopeJson }}
     steps:
       - name: Dump Workflow Information
-        uses: aholstrup1/al-go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -47,7 +47,7 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: aholstrup1/al-go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -60,20 +60,20 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'appSourceContext'
 
       - name: Deliver
-        uses: aholstrup1/al-go/Actions/Deliver@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/Deliver@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -94,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: aholstrup1/al-go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

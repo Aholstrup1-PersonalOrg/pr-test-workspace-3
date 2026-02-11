@@ -51,7 +51,7 @@ jobs:
     runs-on: [ windows-latest ]
     steps:
       - name: Dump Workflow Information
-        uses: aholstrup1/al-go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -60,19 +60,19 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: aholstrup1/al-go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
           get: type
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -80,7 +80,7 @@ jobs:
           useGhTokenWorkflowForPush: '${{ github.event.inputs.useGhTokenWorkflow }}'
 
       - name: Creating a new app
-        uses: aholstrup1/al-go/Actions/CreateApp@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/CreateApp@aholstrup/workspace_compilationm
         with:
           shell: powershell
           token: ${{ steps.ReadSecrets.outputs.TokenForPush }}
@@ -94,7 +94,7 @@ jobs:
 
       - name: Finalize the workflow
         if: always()
-        uses: aholstrup1/al-go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:

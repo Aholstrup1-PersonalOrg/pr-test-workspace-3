@@ -1,6 +1,10 @@
 {
-  "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v8.2/.Modules/settings.schema.json",
+  "$schema": "https://raw.githubusercontent.com/aholstrup1/AL-Go/aholstrup/workspace_compilationm/Actions/.Modules/settings.schema.json",
   "country": "us",
-  "appFolders": ["App1"],
-  "testFolders": ["App1.Test"]
+  "appFolders": [
+    "App1"
+  ],
+  "testFolders": [
+    "App1.Test"
+  ]
 }

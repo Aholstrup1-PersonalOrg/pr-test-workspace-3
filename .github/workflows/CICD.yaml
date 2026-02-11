@@ -51,7 +51,7 @@ jobs:
       trackALAlertsInGitHub: ${{ steps.SetALCodeAnalysisVar.outputs.trackALAlertsInGitHub }}
     steps:
       - name: Dump Workflow Information
-        uses: aholstrup1/al-go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DumpWorkflowInfo@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -62,13 +62,13 @@ jobs:
 
       - name: Initialize the workflow
         id: init
-        uses: aholstrup1/al-go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowInitialize@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Read settings
         id: ReadSettings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
           get: type,powerPlatformSolutionFolder,useGitSubmodules,trackALAlertsInGitHub
@@ -82,7 +82,7 @@ jobs:
       - name: Read submodules token
         id: ReadSubmodulesToken
         if: env.useGitSubmodules != 'false' && env.useGitSubmodules != ''
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -103,7 +103,7 @@ jobs:
 
       - name: Determine Projects To Build
         id: determineProjectsToBuild
-        uses: aholstrup1/al-go/Actions/DetermineProjectsToBuild@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineProjectsToBuild@aholstrup/workspace_compilationm
         with:
           shell: powershell
           maxBuildDepth: ${{ env.workflowDepth }}
@@ -116,7 +116,7 @@ jobs:
 
       - name: Determine Delivery Target Secrets
         id: DetermineDeliveryTargetSecrets
-        uses: aholstrup1/al-go/Actions/DetermineDeliveryTargets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineDeliveryTargets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           projectsJson: '${{ steps.determineProjectsToBuild.outputs.ProjectsJson }}'
@@ -124,7 +124,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -132,7 +132,7 @@ jobs:
 
       - name: Determine Delivery Targets
         id: DetermineDeliveryTargets
-        uses: aholstrup1/al-go/Actions/DetermineDeliveryTargets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineDeliveryTargets@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -142,7 +142,7 @@ jobs:
 
       - name: Determine Deployment Environments
         id: DetermineDeploymentEnvironments
-        uses: aholstrup1/al-go/Actions/DetermineDeploymentEnvironments@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineDeploymentEnvironments@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -158,21 +158,21 @@ jobs:
         uses: actions/checkout@de0fac2e4500dabe0009e67214ff5f5447ce83dd # v6.0.2
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
           get: templateUrl
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: 'ghTokenWorkflow'
 
       - name: Check for updates to AL-Go system files
-        uses: aholstrup1/al-go/Actions/CheckForUpdates@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/CheckForUpdates@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
@@ -226,7 +226,7 @@ jobs:
       - name: Process AL Code Analysis Logs
         id: ProcessALCodeAnalysisLogs
         if: (success() || failure())
-        uses: aholstrup1/al-go/Actions/ProcessALCodeAnalysisLogs@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ProcessALCodeAnalysisLogs@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -260,13 +260,13 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Determine ArtifactUrl
         id: determineArtifactUrl
-        uses: aholstrup1/al-go/Actions/DetermineArtifactUrl@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DetermineArtifactUrl@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
@@ -275,7 +275,7 @@ jobs:
         uses: actions/configure-pages@983d7736d9b0ae728b81ab479565c72886d7745b # v5.0.0
 
       - name: Build Reference Documentation
-        uses: aholstrup1/al-go/Actions/BuildReferenceDocumentation@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/BuildReferenceDocumentation@aholstrup/workspace_compilationm
         with:
           shell: powershell
           artifacts: '.artifacts'
@@ -316,7 +316,7 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: ${{ matrix.shell }}
           get: type,powerPlatformSolutionFolder
@@ -330,7 +330,7 @@ jobs:
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: ${{ matrix.shell }}
           gitHubSecrets: ${{ toJson(secrets) }}
@@ -338,7 +338,7 @@ jobs:
 
       - name: Deploy to Business Central
         id: Deploy
-        uses: aholstrup1/al-go/Actions/Deploy@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/Deploy@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -350,7 +350,7 @@ jobs:
 
       - name: Deploy to Power Platform
         if: env.type == 'PTE' && env.powerPlatformSolutionFolder != ''
-        uses: aholstrup1/al-go/Actions/DeployPowerPlatform@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/DeployPowerPlatform@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -378,20 +378,20 @@ jobs:
           path: '.artifacts'
 
       - name: Read settings
-        uses: aholstrup1/al-go/Actions/ReadSettings@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSettings@aholstrup/workspace_compilationm
         with:
           shell: powershell
 
       - name: Read secrets
         id: ReadSecrets
-        uses: aholstrup1/al-go/Actions/ReadSecrets@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/ReadSecrets@aholstrup/workspace_compilationm
         with:
           shell: powershell
           gitHubSecrets: ${{ toJson(secrets) }}
           getSecrets: '${{ matrix.deliveryTarget }}Context'
 
       - name: Deliver
-        uses: aholstrup1/al-go/Actions/Deliver@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/Deliver@aholstrup/workspace_compilationm
         env:
           Secrets: '${{ steps.ReadSecrets.outputs.Secrets }}'
         with:
@@ -411,7 +411,7 @@ jobs:
 
       - name: Finalize the workflow
         id: PostProcess
-        uses: aholstrup1/al-go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
+        uses: aholstrup1/AL-Go/Actions/WorkflowPostProcess@aholstrup/workspace_compilationm
         env:
           GITHUB_TOKEN: ${{ github.token }}
         with:
