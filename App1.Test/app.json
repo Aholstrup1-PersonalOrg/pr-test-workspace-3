@@ -1,0 +1,28 @@
+{
+  "id": "66666666-6666-6666-6666-666666666666",
+  "name": "AppSourceApp1.Test",
+  "publisher": "TestPublisher",
+  "version": "1.0.0.0",
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
+  "dependencies": [
+    {
+      "id": "55555555-5555-5555-5555-555555555555",
+      "name": "AppSourceApp1",
+      "publisher": "TestPublisher",
+      "version": "1.0.0.0"
+    }
+  ],
+  "idRanges": [
+    {
+      "from": 60200,
+      "to": 60249
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "15.0"
+}

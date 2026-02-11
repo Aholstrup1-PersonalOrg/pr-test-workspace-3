@@ -1,0 +1,20 @@
+{
+  "id": "55555555-5555-5555-5555-555555555555",
+  "name": "AppSourceApp1",
+  "publisher": "TestPublisher",
+  "version": "1.0.0.0",
+  "platform": "26.0.0.0",
+  "application": "26.0.0.0",
+  "idRanges": [
+    {
+      "from": 50300,
+      "to": 50349
+    }
+  ],
+  "resourceExposurePolicy": {
+    "allowDebugging": true,
+    "allowDownloadingSource": true,
+    "includeSourceInSymbolFile": true
+  },
+  "runtime": "15.0"
+}

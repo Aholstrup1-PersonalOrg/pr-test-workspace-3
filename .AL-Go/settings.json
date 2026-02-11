@@ -1,10 +1,6 @@
 {
   "$schema": "https://raw.githubusercontent.com/microsoft/AL-Go-Actions/v8.2/.Modules/settings.schema.json",
   "country": "us",
-  "appSourceCopMandatoryAffixes": [
-    "<affix>"
-  ],
-  "appFolders": [],
-  "testFolders": [],
-  "bcptTestFolders": []
+  "appFolders": ["App1"],
+  "testFolders": ["App1.Test"]
 }
