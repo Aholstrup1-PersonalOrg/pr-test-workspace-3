@@ -2,7 +2,7 @@
   "$schema": "https://raw.githubusercontent.com/aholstrup1/AL-Go/aholstrup/workspace_compilationm/Actions/.Modules/settings.schema.json",
   "type": "AppSource App",
   "templateUrl": "https://github.com/aholstrup1/al-go@aholstrup/workspace_compilationm",
-  "artifact": "bcinsider/Sandbox/28.0.45995.0//latest",
+  "artifact": "bcinsider/Sandbox/26.0.31093.0//latest",
   "useWorkspaceCompilation": true,
   "useCompilerFolder": true,
   "doNotPublishApps": true,
